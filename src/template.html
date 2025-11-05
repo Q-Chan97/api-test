@@ -5,11 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>API Test</title>
+    <style>
+      .container {
+        display: flex;
+        flex-direction: column;
+        width: 500px;
+      }
+    </style>
   </head>
   <body>
-    <img src="#">
+    <div class="container">
+      <img src="#"></div>
+      <button>New Image</button>
+      <label for="search" name="search" id="search">Search new gif here:</label>
+      <input type="text" name="search" id="search">
     <script>
       const img = document.querySelector("img");
+      const btn = document.querySelector("button");
+
       fetch("https://api.giphy.com/v1/gifs/translate?api_key=ediGiayomD6bp6KKvqA4LlXFXsDfsQz7&s=cats")
         .then((response) => {
           return response.json();
