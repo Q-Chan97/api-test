@@ -4,7 +4,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>API Test</title>
   </head>
-  <body></body>
+  <body>
+    <img src="#">
+    <script>
+      const img = document.querySelector("img");
+      fetch("https://api.giphy.com/v1/gifs/translate?api_key=ediGiayomD6bp6KKvqA4LlXFXsDfsQz7&s=cats")
+        .then((response) => {
+          return response.json();
+        })
+        .then((response) => {
+          img.src = response.data.images.original.url;
+        });
+    </script>
+  </body>
 </html>
