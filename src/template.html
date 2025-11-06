@@ -16,20 +16,38 @@
   <body>
     <div class="container">
       <img src="#"></div>
-      <button>New Image</button>
-      <label for="search" name="search" id="search">Search new gif here:</label>
+      <button type="button">New Image</button>
+      <label for="search" name="search">Search new gif here:</label>
       <input type="text" name="search" id="search">
+      <button id="newGifButton" type="submit">Search</button>
     <script>
       const img = document.querySelector("img");
-      const btn = document.querySelector("button");
+      const newBtn = document.querySelector("button[type='button']");
+      const searchInput = document.getElementById("search");
+      const searchButton = document.getElementById("newGifButton");
 
-      fetch("https://api.giphy.com/v1/gifs/translate?api_key=ediGiayomD6bp6KKvqA4LlXFXsDfsQz7&s=cats")
+      function getGIF(searchTerm) {
+        // Store API request in variable that changes based on search term
+        let url = `https://api.giphy.com/v1/gifs/translate?api_key=ediGiayomD6bp6KKvqA4LlXFXsDfsQz7&s=${searchTerm}`;
+        
+        return fetch(url)
         .then((response) => {
           return response.json();
         })
         .then((response) => {
           img.src = response.data.images.original.url;
-        });
+        })
+      };
+
+      // Get search term, and use that in API request
+      searchButton.addEventListener("click", () => {
+        let searchTerm = searchInput.value.trim();
+
+        getGIF(searchTerm)
+      })
+
+      // Default gif on load
+      getGIF("https://api.giphy.com/v1/gifs/translate?api_key=ediGiayomD6bp6KKvqA4LlXFXsDfsQz7&s=cats")
     </script>
   </body>
 </html>
