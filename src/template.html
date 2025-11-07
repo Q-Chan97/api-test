@@ -16,15 +16,16 @@
   <body>
     <div class="container">
       <img src="#"></div>
-      <button type="button">New Image</button>
+      <button id="refresh-button" type="button">New Image</button>
       <label for="search" name="search">Search new gif here:</label>
       <input type="text" name="search" id="search">
-      <button id="newGifButton" type="submit">Search</button>
+      <button id="new-gif-button" type="submit">Search</button>
     <script>
       const img = document.querySelector("img");
-      const newBtn = document.querySelector("button[type='button']");
+      const refreshButton = document.getElementById("refresh-button");
       const searchInput = document.getElementById("search");
-      const searchButton = document.getElementById("newGifButton");
+      const searchButton = document.getElementById("new-gif-button");
+      let currentSearch = "cats"; // Default search
 
       function getGIF(searchTerm) {
         // Store API request in variable that changes based on search term
@@ -43,7 +44,12 @@
       searchButton.addEventListener("click", () => {
         let searchTerm = searchInput.value.trim();
 
+        currentSearch = searchTerm; // Update current search in string
         getGIF(searchTerm)
+      })
+
+      refreshButton.addEventListener("click", () => {
+        getGIF(currentSearch);
       })
 
       // Default gif on load
